@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="360.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="vajar97.controllers.WelcomeController">
+   <children>
+      <Button fx:id="welcome_btn_open" layoutX="114.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: orange;" text="Open" />
+      <Button fx:id="welcome_btn_create" layoutX="113.0" layoutY="96.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: orange;" text="Create" />
+      <Label layoutX="17.0" layoutY="30.0" prefHeight="35.0" prefWidth="328.0" text="Create database or open exist" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

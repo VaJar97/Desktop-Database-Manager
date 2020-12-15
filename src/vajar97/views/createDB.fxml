@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="180.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="vajar97.controllers.CreateDBController">
+   <children>
+      <Label layoutX="79.0" layoutY="14.0" text="Create new database">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="65.0" text="DB name" />
+      <Label layoutX="14.0" layoutY="104.0" text="Path" />
+      <Button fx:id="createTable_acceptBtn" layoutX="293.0" layoutY="141.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Accept" />
+      <TextField fx:id="createDB_dbName" layoutX="85.0" layoutY="61.0" prefHeight="25.0" prefWidth="210.0" text="newDatabase" />
+      <TextField fx:id="createDB_dbPath" layoutX="87.0" layoutY="100.0" prefHeight="25.0" prefWidth="210.0" text="C:\" />
+      <Button fx:id="createDB_directoryBtn" layoutX="301.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: orange;">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/ic_directory.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
