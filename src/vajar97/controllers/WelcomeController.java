@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import vajar97.models.MyFileChooser;
 import vajar97.models.Utils;
 
@@ -27,7 +28,10 @@ public class WelcomeController {
     @FXML
     void initialize() {
         welcome_btn_create.setOnAction(event -> {
-            utils.switchScene(event, "../views/createDB.fxml");
+            utils.hideScene(
+                    ((Control) event.getSource()).getScene()
+            );
+            utils.openScene("../views/createDB.fxml");
         });
 
         welcome_btn_open.setOnAction(event -> {

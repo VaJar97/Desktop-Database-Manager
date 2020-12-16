@@ -7,75 +7,58 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vajar97.controllers.CreateTableController">
    <children>
-      <AnchorPane prefHeight="82.0" prefWidth="388.0" style="-fx-background-color: black;">
+      <AnchorPane layoutY="-5.0" prefHeight="43.0" prefWidth="389.0" style="-fx-background-color: black;">
          <children>
-            <Label layoutX="51.0" layoutY="51.0" text="Name" textFill="ORANGE">
+            <Label layoutX="26.0" layoutY="14.0" text="Name" textFill="ORANGE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="161.0" layoutY="51.0" text="Type" textFill="ORANGE">
+            <Label layoutX="133.0" layoutY="14.0" text="Type" textFill="ORANGE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="240.0" layoutY="51.0" text="AI" textFill="ORANGE">
+            <Label layoutX="253.0" layoutY="14.0" text="AI" textFill="ORANGE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="268.0" layoutY="51.0" text="NN" textFill="ORANGE">
+            <Label layoutX="285.0" layoutY="14.0" text="NN" textFill="ORANGE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="300.0" layoutY="51.0" text="PK" textFill="ORANGE">
+            <Label layoutX="322.0" layoutY="14.0" text="PK" textFill="ORANGE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="331.0" layoutY="51.0" text="UQ" textFill="ORANGE">
+            <Label layoutX="354.0" layoutY="14.0" prefHeight="20.0" prefWidth="21.0" text="UQ" textFill="ORANGE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <TextField layoutX="14.0" layoutY="88.0" prefHeight="25.0" prefWidth="111.0" />
-      <CheckBox layoutX="240.0" layoutY="92.0" mnemonicParsing="false" />
-      <Button layoutX="282.0" layoutY="354.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: orange;" text="Create table" />
+      <Button fx:id="createTable_acceptBtn" layoutX="282.0" layoutY="354.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: orange;" text="Create table" />
       <Accordion />
-      <ComboBox layoutX="134.0" layoutY="88.0" prefHeight="25.0" prefWidth="91.0" />
-      <CheckBox layoutX="271.0" layoutY="92.0" mnemonicParsing="false" />
-      <CheckBox layoutX="301.0" layoutY="92.0" mnemonicParsing="false" />
-      <CheckBox layoutX="330.0" layoutY="92.0" mnemonicParsing="false" />
-      <TextField layoutX="14.0" layoutY="130.0" prefHeight="25.0" prefWidth="111.0" />
-      <CheckBox layoutX="240.0" layoutY="134.0" mnemonicParsing="false" />
-      <ComboBox layoutX="134.0" layoutY="130.0" prefHeight="25.0" prefWidth="91.0" />
-      <CheckBox layoutX="271.0" layoutY="134.0" mnemonicParsing="false" />
-      <CheckBox layoutX="301.0" layoutY="134.0" mnemonicParsing="false" />
-      <CheckBox layoutX="330.0" layoutY="134.0" mnemonicParsing="false" />
-      <TextField layoutX="14.0" layoutY="175.0" prefHeight="25.0" prefWidth="111.0" />
-      <CheckBox layoutX="240.0" layoutY="179.0" mnemonicParsing="false" />
-      <ComboBox layoutX="134.0" layoutY="175.0" prefHeight="25.0" prefWidth="91.0" />
-      <CheckBox layoutX="271.0" layoutY="179.0" mnemonicParsing="false" />
-      <CheckBox layoutX="301.0" layoutY="179.0" mnemonicParsing="false" />
-      <CheckBox layoutX="330.0" layoutY="179.0" mnemonicParsing="false" />
-      <TextField layoutX="14.0" layoutY="217.0" prefHeight="25.0" prefWidth="111.0" />
-      <CheckBox layoutX="240.0" layoutY="221.0" mnemonicParsing="false" />
-      <ComboBox layoutX="134.0" layoutY="217.0" prefHeight="25.0" prefWidth="91.0" />
-      <CheckBox layoutX="271.0" layoutY="221.0" mnemonicParsing="false" />
-      <CheckBox layoutX="301.0" layoutY="221.0" mnemonicParsing="false" />
-      <CheckBox layoutX="330.0" layoutY="221.0" mnemonicParsing="false" />
-      <TextField layoutX="14.0" layoutY="260.0" prefHeight="25.0" prefWidth="111.0" />
-      <CheckBox layoutX="240.0" layoutY="264.0" mnemonicParsing="false" />
-      <ComboBox layoutX="134.0" layoutY="260.0" prefHeight="25.0" prefWidth="91.0" />
-      <CheckBox layoutX="271.0" layoutY="264.0" mnemonicParsing="false" />
-      <CheckBox layoutX="301.0" layoutY="264.0" mnemonicParsing="false" />
-      <CheckBox layoutX="330.0" layoutY="264.0" mnemonicParsing="false" />
+      <HBox fx:id="createTable_hbox" alignment="CENTER" layoutY="38.0" prefHeight="43.0" prefWidth="389.0" spacing="20.0">
+         <children>
+            <TextField fx:id="createTable_name" prefHeight="25.0" prefWidth="111.0" />
+            <ComboBox fx:id="createTable_type" prefHeight="25.0" prefWidth="91.0" />
+            <CheckBox fx:id="createTable_ai" mnemonicParsing="false" />
+            <CheckBox fx:id="createTable_nn" mnemonicParsing="false" />
+            <CheckBox fx:id="createTable_pk" mnemonicParsing="false" />
+            <CheckBox fx:id="createTable_uq" mnemonicParsing="false" />
+         </children>
+      </HBox>
+      <Button fx:id="createTableBtn1" layoutX="149.0" layoutY="354.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: black;" text="Add column" textFill="WHITE" />
+      <Button fx:id="createTable_cancelBtn" layoutX="14.0" layoutY="354.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: orange;" text="Close" />
    </children>
 </AnchorPane>

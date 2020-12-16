@@ -9,11 +9,8 @@ import javafx.stage.Stage;
 
 public class Utils {
 
-    public void switchScene(ActionEvent event, String fileName) {
-        Control ctrl = (Control) event.getSource();
-        ctrl.getScene()
-                .getWindow()
-                .hide();
+    public void openScene(String fileName) {
+
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(fileName));
@@ -24,4 +21,10 @@ public class Utils {
             System.out.println(e.getMessage());
         }
     }
+
+    public void hideScene(Scene scene) {
+        scene.getWindow()
+                .hide();
+    }
+
 }

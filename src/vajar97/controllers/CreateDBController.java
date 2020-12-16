@@ -4,12 +4,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import vajar97.models.DatabaseQuery;
 import vajar97.models.MyFileChooser;
+import vajar97.models.Utils;
 
 public class CreateDBController {
 
+    private Utils utils = new Utils();
     private MyFileChooser chooser = new MyFileChooser();
     private DatabaseQuery mQuery;
     private String fullPath = "";
@@ -43,12 +46,16 @@ public class CreateDBController {
 
         // check and continue
         createTable_acceptBtn.setOnAction(event -> {
-            if (fullPath.equals("") || fullPath == null) {
+            if (fullPath.equals("")) {
                 fullPath = System.getProperty("user.home") + createDB_dbName.getText() + ".db";
             }
             mQuery = new DatabaseQuery();
             mQuery.connection(fullPath);
-            // TODO make main stage
+
+            utils.hideScene(
+                    ((Control)event.getSource()).getScene()
+            );
+            utils.openScene("../views/mainStage.fxml");
         });
     }
 }
