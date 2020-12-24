@@ -17,7 +17,6 @@ public class Main extends Application {
         primaryStage.setTitle("Desktop DB Manager");
         primaryStage.setScene(new Scene(root, 360, 180));
         primaryStage.show();
-
         primaryStage.setOnCloseRequest(e -> Platform.exit());
     }
 

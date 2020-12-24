@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import vajar97.controllers.MainController;
 
 import java.io.File;
 

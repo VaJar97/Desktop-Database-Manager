@@ -1,6 +1,5 @@
 package vajar97.controllers;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,7 +7,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import vajar97.models.DatabaseQuery;
 import vajar97.models.MyFileChooser;
@@ -18,7 +16,7 @@ public class MainController {
 
     Utils utils = new Utils();
     MyFileChooser chooser = new MyFileChooser();
-    DatabaseQuery mQuery = new DatabaseQuery();
+    DatabaseQuery mQuery;
 
     @FXML
     private ResourceBundle resources;
@@ -36,10 +34,13 @@ public class MainController {
     private MenuItem menu_createDB;
 
     @FXML
+    private MenuItem menu_save;
+
+    @FXML
     private MenuItem menu_exit;
 
     @FXML
-    private MenuItem menu_openTable;
+    private static Menu menu_openTable;
 
     @FXML
     private MenuItem menu_createTable;
@@ -60,12 +61,34 @@ public class MainController {
     private Button bar_schema;
 
     @FXML
-    private TextArea mainText;
+    private Button bar_query;
+
+    @FXML
+    private Button bar_update;
+
+    @FXML
+    private TableView<?> main_table;
+
+    @FXML
+    private TextArea main_queryText;
+
+    @FXML
+    private Button bar_updateTables;
 
     @FXML
     void initialize() {
+        mQuery = new DatabaseQuery();
+
+        bar_updateTables.setOnAction(event -> {
+            updateTableView();
+        });
+
         label_dbName.setText("You work with " + DatabaseQuery.dbName);
         menu_exit.setOnAction(this::closeApp);
+
+        menu_createTable.setOnAction(event -> {
+            utils.openScene("../views/createTable.fxml");
+        });
 
         menu_createDB.setOnAction(event -> {
             utils.hideScene(menuBar.getScene());
@@ -86,5 +109,11 @@ public class MainController {
             System.exit(0);
         });
         stage.close();
+    }
+
+    public static void updateTableView() {
+        //TODO(recognize how to update TextView)
+        //Below we update menu "open tables"
+        DatabaseQuery.getTableList(menu_openTable);
     }
 }
