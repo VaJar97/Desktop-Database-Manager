@@ -31,7 +31,7 @@
                 </Menu>
                   <Menu fx:id="menuTables" mnemonicParsing="false" style="-fx-background-color: orange;" text="Tables">
                     <items>
-                        <Menu fx:id="menu_openTable" mnemonicParsing="false" text="Open table" />
+                        <MenuItem fx:id="menu_openTable" mnemonicParsing="false" text="Open table" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="menu_createTable" mnemonicParsing="false" text="Create Table" />
                     </items>
@@ -73,11 +73,6 @@
                </font>
             </Button>
             <Button fx:id="bar_update" layoutX="42.0" layoutY="146.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" style="-fx-background-color: orange;" text="Update">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="bar_updateTables" layoutX="42.0" layoutY="291.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" style="-fx-background-color: orange;" text="Update tables">
                <font>
                   <Font size="14.0" />
                </font>

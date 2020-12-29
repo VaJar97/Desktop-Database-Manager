@@ -1,13 +1,15 @@
 package vajar97.models;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import vajar97.controllers.MainController;
+import vajar97.controllers.TableListController;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -16,42 +18,28 @@ public class DatabaseQuery {
     public static String dbName = "";
     public static String dbPath = "";
     public static String tableName = "";
+    private static List<String> tableList;
+
+    private static Connection conn;
 
     private final Logger LOG =  Logger.getLogger(this.getClass().getName());
-
-    public static void getTableList(Menu menu) {
-        //TODO(find error "null")
-        try {
-            Class.forName("org.sqlite.JDBC");
-            Connection co = DriverManager.getConnection(
-                    "jdbc:sqlite:" + dbPath + "");
-            ResultSet rs = co.getMetaData().getTables(null, null, null, null);
-            while (rs.next()) {
-                MenuItem menuItem = new MenuItem(rs.getString("TABLE_NAME"));
-                menu.getItems().add(menuItem);
-                menuItem.setOnAction(event -> {
-                    tableName = ((MenuItem) event.getSource()).getText();
-                    System.out.println("open new table : " + ((MenuItem) event.getSource()).getText());
-                });
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     public void connection(String path) {
         try {
             Class.forName("org.sqlite.JDBC");    // get instance of JDBC-class
-            Connection co = DriverManager.getConnection(
+            conn = DriverManager.getConnection(
                     "jdbc:sqlite:" + path + "");    //  connecting new db with driver
 
-            if (co != null & !path.equals("")) {
+            if (conn != null & !path.equals("")) {
                 Path p = Paths.get(path);
                 dbName = p.getFileName().toString();
                 dbPath = path;
             }
 
             LOG.info("Database " + dbName + " connected");
+            getTableList();
+            TableListController tlc = new TableListController();
+            tlc.addList(tableList);
 
         } catch (Exception ex) {
             System.out.print(ex.getMessage() + "\nError: Database or driver not connected");
@@ -70,9 +58,6 @@ public class DatabaseQuery {
             List<String> defaultValueList
     ) {
         try {
-            Class.forName("org.sqlite.JDBC");
-            Connection co = DriverManager.getConnection(
-                    "jdbc:sqlite:" + dbPath + "");
 
             String query = "CREATE TABLE " + (notExist ? "IF NOT EXISTS " : " ")
                     + (name.equals("") ? "newTable" : name) + " (";
@@ -96,31 +81,64 @@ public class DatabaseQuery {
             }
             query += "\n);";
             System.out.println(query);
-            Statement stmt = co.createStatement();
+            Statement stmt = conn.createStatement();
                 // create a new table
                 stmt.execute(query);
                 LOG.info("Tables " + name + " created");
-                MainController.updateTableView();
                 tableName = name;
+                addTable(tableName);
+                tableList.add(tableName);
         } catch (Exception e) {
-            System.out.println(e.getMessage());;
+            e.printStackTrace();
         }
     }
 
-    public static void getData() {
+
+    public void getData() {
         //TODO(get column name and type)
         try {
-            Class.forName("org.sqlite.JDBC");
-            Connection co = DriverManager.getConnection(
-                    "jdbc:sqlite:" + dbPath + "");
-
-            Statement st = co.createStatement();
+            Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * from " + tableName + "");
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int colType = rsmd.getColumnType(1);
-            System.out.println("Column 1 is type " + colType);
+            int index = 1;
+            while(rs.next()) {
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int colType = rsmd.getColumnType(index);
+                String colName = rsmd.getColumnName(index);
+                System.out.println(
+                        index + ". Table: " + rsmd.getTableName(index) + " - Column " + colName +  " is type " + colType);
+                index++;
+            }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void getTableList() {
+        try {
+            ResultSet rs = conn.getMetaData().getTables("", "", "", null);
+            tableList = new ArrayList<>();
+            while (rs.next()) {
+                String table = rs.getString("TABLE_NAME");
+                tableList.add(table);
+                tableName = table;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addTable(String tableName) {
+        tableList.add(tableName);
+        TableListController tlc = new TableListController();
+        tlc.addTable(tableName);
+    }
+
+    public static void removeTable(String name) {
+        try {
+            Statement stm = conn.createStatement();
+            stm.execute("DROP TABLE " + name + ";");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }

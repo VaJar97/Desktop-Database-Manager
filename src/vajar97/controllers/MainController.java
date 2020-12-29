@@ -1,7 +1,9 @@
 package vajar97.controllers;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,7 +18,10 @@ public class MainController {
 
     Utils utils = new Utils();
     MyFileChooser chooser = new MyFileChooser();
-    DatabaseQuery mQuery;
+    DatabaseQuery mQuery = new DatabaseQuery();
+
+    private final Logger LOG =  Logger.getLogger(this.getClass().getName());
+
 
     @FXML
     private ResourceBundle resources;
@@ -40,7 +45,7 @@ public class MainController {
     private MenuItem menu_exit;
 
     @FXML
-    private static Menu menu_openTable;
+    private MenuItem menu_openTable;
 
     @FXML
     private MenuItem menu_createTable;
@@ -73,15 +78,8 @@ public class MainController {
     private TextArea main_queryText;
 
     @FXML
-    private Button bar_updateTables;
-
-    @FXML
     void initialize() {
         mQuery = new DatabaseQuery();
-
-        bar_updateTables.setOnAction(event -> {
-            updateTableView();
-        });
 
         label_dbName.setText("You work with " + DatabaseQuery.dbName);
         menu_exit.setOnAction(this::closeApp);
@@ -99,7 +97,13 @@ public class MainController {
             chooser.openFileFromMenu(menuBar);
         });
 
+        menu_openTable.setOnAction(event -> {
+            utils.openScene("../views/tableList.fxml");
+        });
 
+        bar_select.setOnAction(event -> {
+            mQuery.getData();
+        });
     }
 
     public void closeApp(ActionEvent event) {
@@ -109,11 +113,5 @@ public class MainController {
             System.exit(0);
         });
         stage.close();
-    }
-
-    public static void updateTableView() {
-        //TODO(recognize how to update TextView)
-        //Below we update menu "open tables"
-        DatabaseQuery.getTableList(menu_openTable);
     }
 }
